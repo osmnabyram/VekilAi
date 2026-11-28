@@ -933,11 +933,11 @@ class Arama:
         if self.kalan_dakika() < KOTA_UYARI_DK and "dakika" not in uyarilar:
             uyarilar.add("dakika")
             mesaj = (f"Efendim, Twilio'nun bedava dakikaları azaldı (yaklaşık {max(0, self.kalan_dakika())} dk kaldı). "
-                     "Bitince telefonla arayamam; ücretsiz Telegram aramasına geçebiliriz.")
+                     "Bitince telefonla arayamam; sohbetten yazışmaya devam ederiz.")
         elif 0 <= kalan_gun <= KOTA_UYARI_GUN and "gun" not in uyarilar:
             uyarilar.add("gun")
             mesaj = (f"Efendim, Twilio deneme süresi {kalan_gun} gün sonra bitiyor. Sonra telefonla arayamam; "
-                     "ücretsiz Telegram aramasına geçebiliriz.")
+                     "sohbetten yazışmaya devam ederiz.")
         if mesaj:
             self.durum["uyarilar"] = sorted(uyarilar)
             await self._kaydet()

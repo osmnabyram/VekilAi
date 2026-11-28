@@ -1043,7 +1043,7 @@ function kayitSec(id, ucarak = true) {
       <div class="meta">Güncellendi · ${esc(tarihYaz(k.tarih))}</div>
       ${bagli.length ? `<div><div class="baslik-kucuk">BAĞLANTILI · ${bagli.length}</div><div class="liste">${bagli.map((b) => `<button data-id="${b.id}">${esc(b.anahtar)}</button>`).join('')}</div></div>` : ''}
     </div>
-    <button class="unut" title="Telegram'da OpenDelegate'e yapıştır"><code>/unut ${esc(k.anahtar)}</code><span>KOPYALA</span></button>`;
+    <button class="unut" title="Sohbette OpenDelegate'e yapıştır"><code>/unut ${esc(k.anahtar)}</code><span>KOPYALA</span></button>`;
   panelOlaylari(); panel.querySelector('.unut').onclick = () => kopyala(`/unut ${k.anahtar}`);
   panel.classList.add('acik');
 }
@@ -1094,7 +1094,7 @@ function panelOlaylari() {
   panel.querySelectorAll('[data-id]').forEach((b) => b.onclick = () => kayitSec(b.dataset.id));
 }
 async function kopyala(metin) {
-  try { await navigator.clipboard.writeText(metin); bildir('Kopyalandı — Telegram\'da OpenDelegate\'e yapıştır'); }
+  try { await navigator.clipboard.writeText(metin); bildir('Kopyalandı — sohbette OpenDelegate\'e yapıştır'); }
   catch { bildir(metin); }
 }
 let bildirimZaman;

@@ -5,6 +5,7 @@ Biçim: [Keep a Changelog](https://keepachangelog.com/). Sürümler [Releases](h
 ## [Yayınlanmadı / Unreleased]
 
 ### Değişti / Changed
+- Web kullanıcısına görünen "Telegram" ifadeleri (hata mesajları, /yardim, durum, zihin haritası ipuçları, asistanın kendi araç açıklamaları) sohbet olarak değiştirildi. / User-facing "Telegram" wording (error messages, /help, status, mind-map hints, the assistant's own tool descriptions) now says chat.
 - **Web sohbetinin giriş şifresi artık `kys` şifresiyle aynı.** Ayrı `WEB_PAROLA` yok: tek şifre, yalnızca PBKDF2 özeti saklanır (şifrenin kendisi hiçbir yerde durmaz). Kurulum sihirbazında şifre en az 12 karakter ve tek sayfada sorulur; Render şablonu `KILIT_*` özetlerini ister. `WEB_PAROLA` yalnızca kys şifresi hiç ayarlanmamış kurulumlar için yedek olarak kaldı. / **The web chat sign-in password is now the same as the `kys` password.** No separate `WEB_PAROLA`: one password, only its PBKDF2 digest is stored (the password itself is never kept). The setup wizard asks for it once, at least 12 characters; the Render blueprint asks for the `KILIT_*` digests. `WEB_PAROLA` remains only as a fallback for installs with no kys password at all.
 
 - Zihin haritasında ve kurulum sihirbazında merkez etiketi artık "OPENDELEGATE". / The mind map and the setup wizard now show "OPENDELEGATE" as the centre label.

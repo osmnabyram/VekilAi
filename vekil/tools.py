@@ -200,7 +200,7 @@ TOOLLAR: dict[str, Tool] = {
             hedef="onedrive",
             risk="düşük",  # salt okuma: dosya sadece kullanıcının kendi sohbetine gider
             aciklama=(
-                "[OneDrive] OneDrive'daki bir dosyayı kullanıcının Telegram sohbetine gönderir, en fazla 20 MB. Resimler "
+                "[OneDrive] OneDrive'daki bir dosyayı kullanıcının sohbetine gönderir, en fazla 20 MB. Resimler "
                 "FOTOĞRAF, videolar VİDEO, GIF animasyon, ses dosyaları SES olarak doğrudan sohbette görünür; diğerleri "
                 "(pdf, zip...) belge. 'Şu dosyayı at/gönder' denince kullan. PC kapalıyken de çalışır."
             ),
@@ -400,7 +400,7 @@ TOOLLAR: dict[str, Tool] = {
             risk="düşük",  # sadece okur/bildirir; hassas yollar reddedilir
             aciklama=(
                 "[İzleme] PC'deki bir klasörü yeni dosyalar için izlemeye alır (ekle), izlenenleri listeler (liste) "
-                "ya da bir izlemeyi kaldırır (kaldir). PC açıkken ajan dakikada bir bakar, yeni dosya düşünce Telegram'a "
+                "ya da bir izlemeyi kaldırır (kaldir). PC açıkken ajan dakikada bir bakar, yeni dosya düşünce sohbete "
                 "haber gelir. Kurallar kalıcıdır."
             ),
             parametreler={
@@ -565,8 +565,8 @@ TOOLLAR: dict[str, Tool] = {
             hedef="harita",
             risk="düşük",  # sadece kullanıcıya kendi haritasının butonlarını gönderir
             aciklama=(
-                "Kullanıcıya zihin haritanın (kalıcı hafızanın 3B evreni) açılış butonlarını gönderir: Telegram içinde açan "
-                "buton + tarayıcı linki. Kullanıcı 'zihnini aç', 'zihnini göster', 'beynini aç', 'hafızanı göster', "
+                "Kullanıcıya zihin haritanın (kalıcı hafızanın 3B evreni) açılış butonlarını gönderir: tarayıcıda "
+                "açılan bağlantı. Kullanıcı 'zihnini aç', 'zihnini göster', 'beynini aç', 'hafızanı göster', "
                 "'haritanı aç', 'aklındakileri göster' gibi bir şey derse HEMEN bunu çağır; ne istediğini sorma."
             ),
             parametreler={"type": "object", "properties": {}, "required": []},
@@ -703,8 +703,8 @@ TOOLLAR: dict[str, Tool] = {
             aciklama=(
                 "[Telefon] kullanıcıyı telefonla ARAR, açınca sesli karşılıklı konuşursunuz. Kullanıcı 'beni ara' dediğinde YA DA "
                 "önemli/acil bir şey olduğunda (bir iş patladı, kaçırmaması gereken bir durum) kendi kararınla kullan; "
-                "her saatte arayabilirsin. Önemsiz şeyler için arama, Telegram yeter. eylem=ara: soyle = açılışta söyleyeceğin kısa cümle (ör. 'Toplantın 15 dakika sonra "
-                "başlıyor.'), neden = kullanıcı açmazsa Telegram'a yazılacak kısa sebep. İLERİ bir saatte aramak için "
+                "her saatte arayabilirsin. Önemsiz şeyler için arama, sohbet yeter. eylem=ara: soyle = açılışta söyleyeceğin kısa cümle (ör. 'Toplantın 15 dakika sonra "
+                "başlıyor.'), neden = kullanıcı açmazsa sohbete yazılacak kısa sebep. İLERİ bir saatte aramak için "
                 "('8'de ara', '10 dk sonra ara') bunu değil zamanla(tur=gorev, metin='Kullanıcıyı telefonla ara: <ne için>') "
                 "kullan. eylem=durum: kalan deneme dakikası. Görüşme bitince özet sohbete kendiliğinden gelir."
             ),
@@ -737,7 +737,7 @@ TOOLLAR: dict[str, Tool] = {
             hedef="komut_calistir",
             risk="düşük",
             aciklama=(
-                "[Telegram komutları] kullanıcının isteği bir bot komutuyla karşılanıyorsa (nasıl söylediği fark etmez) "
+                "[Sohbet komutları] kullanıcının isteği bir bot komutuyla karşılanıyorsa (nasıl söylediği fark etmez) "
                 "komutu SEN çalıştır, kullanıcının /komut yazmasını bekleme: durum "
                 "(OpenDelegate/PC/OneDrive durumu), zihin (zihin haritası linki), hafiza (kayıtlı "
                 "bilgiler), masaustu (masaüstleri), brifing (sabah brifingini şimdi gönder), grind (son "

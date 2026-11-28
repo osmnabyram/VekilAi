@@ -199,7 +199,7 @@ Erişim:
   Fare ve klavye GEREKİYORSA (bir arayüzde gezinmek, uygulamada/sitede iş yapmak, "şu ekranda ne var özetle")
   bilgisayar_kullan(gorev) kullan: ekranı görüp tıklar ve yazar. Görevi tek net cümleyle ver; gereken metin/şifre
   görev içinde olsun. TAM OTONOM: Kullanıcıya sormadan başlar ve bitirir (mesaj gönderme, Enter dahil); tek istisna
-  para çıkışı (satın al/öde/havale), onu sorar. Kullanıcı Telegram'dan adımları izler. Önce "yapayım mı?" diye
+  para çıkışı (satın al/öde/havale), onu sorar. Kullanıcı adımları sohbetten izler. Önce "yapayım mı?" diye
   SORMA, direkt çağır. Basit iş (dosya/terminal/program_ac) için bunu kullanma.
   "İşin bitince / şimdi bilgisayarı kapat" denince GERÇEK shutdown YOK: önce istenen işi bitir, sonra ayrı
   bir çağrı olarak bilgisayari_uyut (hazırda bekletir; akıllı priz + Wake-on-AC ile sonra anında açılır).
@@ -877,7 +877,7 @@ async def _ekrani_sohbete_gonder(bot: Bot, chat_id: int, resim: bytes) -> str:
         return "görüntü sohbete dosya olarak gönderildi"
     except Exception as e:  # noqa: BLE001
         logger.warning("Ekran görüntüsü Telegram'a gönderilemedi: %s", type(e).__name__)
-        return "görüntü sohbete GÖNDERİLEMEDİ (Telegram hatası), kullanıcıya söyle"
+        return "görüntü sohbete GÖNDERİLEMEDİ (gönderme hatası), kullanıcıya söyle"
 
 
 async def _ekrana_bak(bot: Bot, chat_id: int, argumanlar: dict[str, Any], onayli: bool) -> tuple[bool, str]:
@@ -962,13 +962,13 @@ async def _onedrive_gonder(bot: Bot, chat_id: int, argumanlar: dict[str, Any]) -
         giden = await _medya_gonder(bot, chat_id, veri, ad, istenen)
     except Exception as e:  # noqa: BLE001
         logger.warning("OneDrive dosyası Telegram'a gönderilemedi: %s", type(e).__name__)
-        return False, f"HATA: Dosyayı OneDrive'dan aldım ama Telegram'a gönderemedim ({type(e).__name__})."
+        return False, f"HATA: Dosyayı OneDrive'dan aldım ama sohbete gönderemedim ({type(e).__name__})."
     finally:
         boyut = len(veri)
         del veri
     beklenen = MEDYA_TURLERI.get(PureWindowsPath(ad).suffix.lower(), "belge") if istenen == "otomatik" else "belge"
     not_ = (
-        f" ({_MEDYA_ADI[beklenen]} olarak gönderilemedi, Telegram reddetti; belge olarak gitti — bunu kullanıcıya söyle)"
+        f" ({_MEDYA_ADI[beklenen]} olarak gönderilemedi, sohbet reddetti; belge olarak gitti — bunu kullanıcıya söyle)"
         if giden != beklenen else ""
     )
     return True, (
@@ -1733,7 +1733,7 @@ START_METNI = (
     "/yedek — hafızamı dosya olarak indir\n"
     "/yonetim — yönetim sayfası (durum, hafıza sayıları, son işler)\n"
     "/unut <anahtar> — hafızadan bir bilgiyi sil\n"
-    "/zihin (ya da /harita) — zihin haritası (hafızamın 3B evreni; Telegram içinde ya da tarayıcıda)\n"
+    "/zihin (ya da /harita) — zihin haritası (hafızamın 3B evreni, tarayıcıda açılır)\n"
     "/kuyruk — PC kapalıyken sıraya alınan işler (/kuyruk iptal <id>)\n"
     "/izle — izlenen klasörler (/izle ekle <yol> [*.pdf], /izle kaldir <id>)\n"
     "/vekiller — vekil kadrosu (/vekiller ad <rol> <yeni ad>)\n"
@@ -1800,7 +1800,7 @@ async def komut_durum(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Non
     mod = "webhook" if config.WEBHOOK_URL else "polling (lokal)"
     await update.message.reply_text(
         f"📢 Durum\nPC ajanı: {ajan}\nOneDrive: {od}\nWeb arama: {arama}\nSesli mesaj: {sesli}\nHafıza: {hfz}\n"
-        f"Model: {config.DEEPSEEK_MODEL}\nTelegram modu: {mod}",
+        f"Model: {config.DEEPSEEK_MODEL}\nMod: {mod}",
         reply_markup=KOMUT_BUTONLARI,
     )
 
@@ -2246,7 +2246,7 @@ async def ss_butonu(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     finally:
         del resim
     if "GÖNDERİLEMEDİ" in gonderim:
-        await context.bot.send_message(chat_id, "Görüntüyü aldım ama Telegram'a gönderemedim efendim.")
+        await context.bot.send_message(chat_id, "Görüntüyü aldım ama sohbete gönderemedim efendim.")
 
 
 async def komut_dur(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:

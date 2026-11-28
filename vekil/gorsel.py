@@ -33,7 +33,7 @@ _SISTEM = (
 
 
 _FOTO_SISTEM = (
-    "Kullanıcının Telegram'dan gönderdiği fotoğrafı inceliyorsun. SADECE tek bir JSON nesnesi döndür, başka hiçbir "
+    "Kullanıcının sohbetten gönderdiği fotoğrafı inceliyorsun. SADECE tek bir JSON nesnesi döndür, başka hiçbir "
     "şey yazma. Alanlar:\n"
     '{"tur": "hata|fis|not|genel", "baslik": "kısa başlık", "ozet": "1-2 cümle Türkçe", '
     '"metin": "fotoğraftaki yazının aslına sadık dökümü (satır satır); okuyamadığın her yere [okunmuyor] yaz", '
